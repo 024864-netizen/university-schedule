@@ -113,8 +113,9 @@ https://github.com/024864-netizen/university-schedule
 7\. `docs: add github pages link`
 
 
+### Скриншот історії комітів
 
-Коміти були розділені за логічними змінами проєкту.
+![Історія комітів](commits.png)
 
 
 
