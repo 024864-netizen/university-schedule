@@ -60,9 +60,9 @@
 
 \## Опублікована сторінка
 
+Проєкт опубліковано на GitHub Pages:
 
-
-Посилання на GitHub Pages буде додано після публікації проєкту.
+https://024864-netizen.github.io/university-schedule/
 
 
 
