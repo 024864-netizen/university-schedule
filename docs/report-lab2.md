@@ -1,10 +1,10 @@
-\# Лабораторна робота №2
+# Лабораторна робота №2
 
-\## Семантична розмітка та форми: каркас вебзастосунку
+## Семантична розмітка та форми: каркас вебзастосунку
 
 
 
-\### Мета роботи
+### Мета роботи
 
 
 
@@ -12,7 +12,7 @@
 
 
 
-\### Посилання
+### Посилання
 
 
 
@@ -28,15 +28,15 @@ GitHub: https://github.com/024864-netizen/university-schedule
 
 
 
-\- Головна: https://024864-netizen.github.io/university-schedule/
+- Головна: https://024864-netizen.github.io/university-schedule/
 
-\- Розклад: https://024864-netizen.github.io/university-schedule/schedule.html
+- Розклад: https://024864-netizen.github.io/university-schedule/schedule.html
 
-\- Групи та форма: https://024864-netizen.github.io/university-schedule/groups.html
+- Групи та форма: https://024864-netizen.github.io/university-schedule/groups.html
 
 
 
-\### Виконання роботи
+### Виконання роботи
 
 
 
@@ -56,7 +56,7 @@ GitHub: https://github.com/024864-netizen/university-schedule
 
 
 
-\### Форма
+### Форма
 
 
 
@@ -80,7 +80,7 @@ GitHub: https://github.com/024864-netizen/university-schedule
 
 
 
-\### Перевірка
+### Перевірка
 
 
 
@@ -88,7 +88,7 @@ GitHub: https://github.com/024864-netizen/university-schedule
 
 
 
-!\[HTML Validator](lab2/validator.png)
+![HTML Validator](lab2/validator.png)
 
 
 
@@ -100,11 +100,11 @@ GitHub: https://github.com/024864-netizen/university-schedule
 
 
 
-!\[Lighthouse](lab2/lighthouse.png)
+![Lighthouse](lab2/lighthouse.png)
 
 
 
-\### Висновок
+### Висновок
 
 
 
