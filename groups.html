@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Навчальні групи та форма зворотного зв'язку">
+    <title>Групи та форма — University Schedule</title>
+</head>
+<body>
+    <header>
+        <a href="index.html">University Schedule</a>
+
+        <nav aria-label="Головна навігація">
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="schedule.html">Розклад</a></li>
+                <li><a href="groups.html">Групи та форма</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Навчальні групи та зворотний зв'язок</h1>
+
+        <section>
+            <h2>Навчальні групи</h2>
+
+            <p>
+                Університетські групи об'єднують студентів,
+                які навчаються за відповідними освітніми програмами.
+            </p>
+
+            <ul>
+                <li>КН-101 — Комп'ютерні науки</li>
+                <li>ПІ-201 — Програмна інженерія</li>
+                <li>ІНФ-101 — Інформатика</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Форма зворотного зв'язку</h2>
+
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Контактна інформація</legend>
+
+                    <p>
+                        <label for="student-name">Ім'я та прізвище</label>
+                        <input
+                            type="text"
+                            id="student-name"
+                            name="student-name"
+                            required
+                            minlength="2"
+                            autocomplete="name"
+                        >
+                    </p>
+
+                    <p>
+                        <label for="email">Електронна пошта</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            autocomplete="email"
+                        >
+                    </p>
+
+                    <p>
+                        <label for="phone">Номер телефону</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            pattern="\+380[0-9]{9}"
+                            placeholder="+380XXXXXXXXX"
+                            required
+                            autocomplete="tel"
+                        >
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Дані повідомлення</legend>
+
+                    <p>
+                        <label for="group">Навчальна група</label>
+                        <select id="group" name="group" required>
+                            <option value="">Оберіть групу</option>
+                            <option value="kn-101">КН-101 — Комп'ютерні науки</option>
+                            <option value="pi-201">ПІ-201 — Програмна інженерія</option>
+                            <option value="inf-101">ІНФ-101 — Інформатика</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="date">Дата звернення</label>
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            required
+                        >
+                    </p>
+
+                    <p>
+                        <label for="message">Повідомлення</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="5"
+                            minlength="10"
+                            required
+                        ></textarea>
+                    </p>
+                </fieldset>
+
+                <button type="submit">Надіслати повідомлення</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 University Schedule</p>
+    </footer>
+</body>
+</html>
