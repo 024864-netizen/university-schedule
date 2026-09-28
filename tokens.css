@@ -1,0 +1,57 @@
+:root {
+    --color-primary-100: hsl(214, 100%, 97%);
+    --color-primary-200: hsl(214, 95%, 93%);
+    --color-primary-300: hsl(214, 90%, 85%);
+    --color-primary-400: hsl(214, 85%, 70%);
+    --color-primary-500: hsl(214, 80%, 50%);
+    --color-primary-600: hsl(214, 75%, 40%);
+    --color-primary-700: hsl(214, 70%, 30%);
+
+    --color-accent: hsl(38, 92%, 45%);
+
+    --color-bg: hsl(214, 30%, 97%);
+    --color-surface: hsl(0, 0%, 100%);
+    --color-text: hsl(222, 47%, 11%);
+    --color-muted: hsl(215, 16%, 40%);
+    --color-border: hsl(214, 20%, 80%);
+--color-footer: hsl(222, 47%, 11%);
+    --color-focus: hsl(38, 92%, 45%);
+    --color-error: hsl(0, 72%, 42%);
+
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+
+    --font-sm: clamp(0.875rem, 0.82rem + 0.2vw, 1rem);
+    --font-md: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --font-lg: clamp(1.5rem, 1.25rem + 1vw, 2.25rem);
+
+    --line-height-body: 1.6;
+    --line-height-heading: 1.2;
+
+    --shadow-sm: 0 2px 8px hsl(222 47% 11% / 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: hsl(222, 30%, 10%);
+        --color-surface: hsl(222, 25%, 16%);
+        --color-text: hsl(210, 40%, 96%);
+        --color-muted: hsl(215, 20%, 72%);
+        --color-border: hsl(215, 20%, 35%);
+--color-footer: hsl(222, 25%, 8%);
+
+        --color-primary-100: hsl(214, 40%, 20%);
+        --color-primary-200: hsl(214, 45%, 25%);
+        --color-primary-500: hsl(214, 85%, 65%);
+        --color-primary-600: hsl(214, 85%, 72%);
+        --color-primary-700: hsl(214, 80%, 82%);
+
+        --color-focus: hsl(38, 100%, 65%);
+        --color-error: hsl(0, 85%, 70%);
+    }
+}
