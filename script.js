@@ -191,8 +191,17 @@ async function loadRecords() {
             throw new Error(`HTTP ${response.status}`);
         }
 
-        records = await response.json();
-        updateFilters();
+       records = await response.json();
+
+if (searchInput) {
+    searchInput.value = "";
+}
+
+if (categoryFilter) {
+    categoryFilter.value = "all";
+}
+
+updateFilters();
     } catch (error) {
         cardsContainer.textContent = "";
 
