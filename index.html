@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <meta name="description" content="Інформація про університетський розклад">
     <title>University Schedule — Головна</title>
 </head>
@@ -38,55 +39,71 @@
         </section>
 
         <section>
-    <h2>Можливості</h2>
+            <h2>Можливості</h2>
+            <div class="filters">
+                <label>
+                    Пошук:
+                    <input id="searchInput" type="search" placeholder="Введіть текст">
+                </label>
 
-    <div class="cards">
-        <article class="card">
-            <h3>Розклад занять</h3>
-
-            <p>
-                Перегляд актуальної інформації про заняття,
-                час, викладачів та аудиторії.
-            </p>
-
-            <div class="card-footer">
-                <a class="button" href="schedule.html">
-                    Переглянути розклад
-                </a>
+                <label>
+                    Категорія:
+                    <select id="categoryFilter">
+                        <option value="all">Усі</option>
+                        <option value="schedule">Розклад</option>
+                        <option value="groups">Групи</option>
+                        <option value="feedback">Зворотний зв'язок</option>
+                    </select>
+                </label>
             </div>
-        </article>
 
-        <article class="card">
-            <h3>Навчальні групи</h3>
+            <div class="cards">
+                <article class="card">
+                    <h3>Розклад занять</h3>
 
-            <p>
-                Перегляд списку навчальних груп
-                та інформації про освітні програми.
-            </p>
+                    <p>
+                        Перегляд актуальної інформації про заняття,
+                        час, викладачів та аудиторії.
+                    </p>
 
-            <div class="card-footer">
-                <a class="button" href="groups.html">
-                    Переглянути групи
-                </a>
+                    <div class="card-footer">
+                        <a class="button" href="schedule.html">
+                            Переглянути розклад
+                        </a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h3>Навчальні групи</h3>
+
+                    <p>
+                        Перегляд списку навчальних груп
+                        та інформації про освітні програми.
+                    </p>
+
+                    <div class="card-footer">
+                        <a class="button" href="groups.html">
+                            Переглянути групи
+                        </a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h3>Зворотний зв'язок</h3>
+
+                    <p>
+                        Надсилання повідомлення через форму
+                        зворотного зв'язку.
+                    </p>
+
+                    <div class="card-footer">
+                        <a class="button" href="groups.html">
+                            Відкрити форму
+                        </a>
+                    </div>
+                </article>
             </div>
-        </article>
-
-        <article class="card">
-            <h3>Зворотний зв'язок</h3>
-
-            <p>
-                Надсилання повідомлення через форму
-                зворотного зв'язку.
-            </p>
-
-            <div class="card-footer">
-                <a class="button" href="groups.html">
-                    Відкрити форму
-                </a>
-            </div>
-        </article>
-    </div>
-</section>
+        </section>
         <section>
             <h2>Структура проєкту</h2>
 
