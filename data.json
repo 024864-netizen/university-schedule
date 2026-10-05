@@ -1,20 +1,20 @@
 ﻿[
 	{
 		"id": 1,
-		"title": "Schedule",
-		"text": "View current information about classes, teachers and rooms.",
+		"title": "Розклад занять",
+		"text": "Перегляд актуальної інформації про заняття, викладачів та аудиторії.",
 		"category": "schedule"
 	},
 	{
 		"id": 2,
-		"title": "Study groups",
-		"text": "View study groups and educational programme information.",
+		"title": "Навчальні групи",
+		"text": "Перегляд списку навчальних груп та інформації про освітні програми.",
 		"category": "groups"
 	},
 	{
 		"id": 3,
-		"title": "Feedback",
-		"text": "Send a message using the feedback form.",
+		"title": "Зворотний зв'язок",
+		"text": "Надсилання повідомлення через форму зворотного зв'язку.",
 		"category": "feedback"
 	}
 ]

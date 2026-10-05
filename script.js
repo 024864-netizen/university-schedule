@@ -1,15 +1,15 @@
-const cardsContainer = document.querySelector(".cards");
+п»їconst cardsContainer = document.querySelector(".cards");
 const searchInput = document.querySelector("#searchInput");
 const categoryFilter = document.querySelector("#categoryFilter");
 
 let records = [];
 let lastFocusedElement = null;
 
-/* Тема */
+/* РўРµРјР° */
 
 const themeButton = document.createElement("button");
 themeButton.type = "button";
-themeButton.textContent = "Перемкнути тему";
+themeButton.textContent = "РџРµСЂРµРјРєРЅСѓС‚Рё С‚РµРјСѓ";
 themeButton.className = "theme-toggle";
 document.body.prepend(themeButton);
 
@@ -35,7 +35,7 @@ themeButton.addEventListener("click", () => {
     applyTheme(currentTheme === "dark" ? "light" : "dark");
 });
 
-/*Модальне вікно*/
+/* РњРѕРґР°Р»СЊРЅРµ РІС–РєРЅРѕ */
 
 const modal = document.createElement("dialog");
 modal.className = "record-modal";
@@ -45,7 +45,7 @@ const modalText = document.createElement("p");
 const modalClose = document.createElement("button");
 
 modalClose.type = "button";
-modalClose.textContent = "Закрити";
+modalClose.textContent = "Р—Р°РєСЂРёС‚Рё";
 
 modal.append(modalTitle, modalText, modalClose);
 document.body.append(modal);
@@ -83,14 +83,14 @@ modal.addEventListener("keydown", (event) => {
     }
 });
 
-/*Відображення карток*/
+/* Р’С–РґРѕР±СЂР°Р¶РµРЅРЅСЏ РєР°СЂС‚РѕРє */
 
 function renderRecords(items) {
     cardsContainer.textContent = "";
 
     if (items.length === 0) {
         const emptyMessage = document.createElement("p");
-        emptyMessage.textContent = "За вашим запитом нічого не знайдено.";
+        emptyMessage.textContent = "Р—Р° РІР°С€РёРј Р·Р°РїРёС‚РѕРј РЅС–С‡РѕРіРѕ РЅРµ Р·РЅР°Р№РґРµРЅРѕ.";
         cardsContainer.append(emptyMessage);
         return;
     }
@@ -110,7 +110,7 @@ function renderRecords(items) {
 
         const button = document.createElement("button");
         button.type = "button";
-        button.textContent = "Details";
+        button.textContent = "Р”РµС‚Р°Р»СЊРЅС–С€Рµ";
         button.dataset.id = record.id;
 
         footer.append(button);
@@ -119,7 +119,7 @@ function renderRecords(items) {
     });
 }
 
-/*Фільтрація*/
+/* Р¤С–Р»СЊС‚СЂР°С†С–СЏ */
 
 function filterRecords(items) {
     const searchText = searchInput
@@ -154,7 +154,7 @@ if (categoryFilter) {
     categoryFilter.addEventListener("change", updateFilters);
 }
 
-/*Делегування подій*/
+/* Р”РµР»РµРіСѓРІР°РЅРЅСЏ РїРѕРґС–Р№ */
 
 if (cardsContainer) {
     cardsContainer.addEventListener("click", (event) => {
@@ -174,14 +174,14 @@ if (cardsContainer) {
     });
 }
 
-/* Fetch*/
+/* Fetch */
 
 async function loadRecords() {
     if (!cardsContainer) {
         return;
     }
 
-    cardsContainer.textContent = "Завантаження даних...";
+    cardsContainer.textContent = "Р—Р°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ РґР°РЅРёС…...";
 
     try {
         const response = await fetch("data.json");
@@ -197,17 +197,17 @@ async function loadRecords() {
 
         const errorMessage = document.createElement("p");
         errorMessage.textContent =
-            "Не вдалося завантажити дані. Спробуйте ще раз.";
+            "РќРµ РІРґР°Р»РѕСЃСЏ Р·Р°РІР°РЅС‚Р°Р¶РёС‚Рё РґР°РЅС–. РЎРїСЂРѕР±СѓР№С‚Рµ С‰Рµ СЂР°Р·.";
 
         const retryButton = document.createElement("button");
         retryButton.type = "button";
-        retryButton.textContent = "Повторити";
+        retryButton.textContent = "РџРѕРІС‚РѕСЂРёС‚Рё";
 
         retryButton.addEventListener("click", loadRecords);
 
         cardsContainer.append(errorMessage, retryButton);
 
-        console.error("Помилка завантаження:", error);
+        console.error("РџРѕРјРёР»РєР° Р·Р°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ:", error);
     }
 }
 
