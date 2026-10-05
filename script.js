@@ -5,7 +5,7 @@ const categoryFilter = document.querySelector("#categoryFilter");
 let records = [];
 let lastFocusedElement = null;
 
-/* ---------- Тема ---------- */
+/* Тема */
 
 const themeButton = document.createElement("button");
 themeButton.type = "button";
@@ -35,7 +35,7 @@ themeButton.addEventListener("click", () => {
     applyTheme(currentTheme === "dark" ? "light" : "dark");
 });
 
-/* ---------- Модальне вікно ---------- */
+/*Модальне вікно*/
 
 const modal = document.createElement("dialog");
 modal.className = "record-modal";
@@ -83,7 +83,7 @@ modal.addEventListener("keydown", (event) => {
     }
 });
 
-/* ---------- Відображення карток ---------- */
+/*Відображення карток*/
 
 function renderRecords(items) {
     cardsContainer.textContent = "";
@@ -110,7 +110,7 @@ function renderRecords(items) {
 
         const button = document.createElement("button");
         button.type = "button";
-        button.textContent = "Детальніше";
+        button.textContent = "Details";
         button.dataset.id = record.id;
 
         footer.append(button);
@@ -119,7 +119,7 @@ function renderRecords(items) {
     });
 }
 
-/* ---------- Фільтрація ---------- */
+/*Фільтрація*/
 
 function filterRecords(items) {
     const searchText = searchInput
@@ -154,7 +154,7 @@ if (categoryFilter) {
     categoryFilter.addEventListener("change", updateFilters);
 }
 
-/* ---------- Делегування подій ---------- */
+/*Делегування подій*/
 
 if (cardsContainer) {
     cardsContainer.addEventListener("click", (event) => {
@@ -174,7 +174,7 @@ if (cardsContainer) {
     });
 }
 
-/* ---------- Fetch ---------- */
+/* Fetch*/
 
 async function loadRecords() {
     if (!cardsContainer) {
