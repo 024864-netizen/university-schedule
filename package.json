@@ -1,0 +1,38 @@
+{
+    "name": "university-schedule",
+    "version": "1.0.0",
+    "description": "\\# University Schedule",
+    "main": "script.js",
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint .",
+        "format": "prettier --write \"src/**/*.ts\" \"src/**/*.css\" \"*.html\" \"*.json\" \"*.mjs\" \"*.js\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/024864-netizen/university-schedule.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/024864-netizen/university-schedule/issues"
+    },
+    "homepage": "https://github.com/024864-netizen/university-schedule#readme",
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "eslint": "^10.12.0",
+        "globals": "^17.13.0",
+        "prettier": "^3.9.10",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.71.1",
+        "vite": "^8.3.4"
+    }
+}

@@ -23,9 +23,7 @@ const savedTheme = localStorage.getItem("theme");
 if (savedTheme) {
     applyTheme(savedTheme);
 } else {
-    const systemDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-    ).matches;
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
     applyTheme(systemDark ? "dark" : "light");
 }
@@ -122,21 +120,16 @@ function renderRecords(items) {
 /* Фільтрація */
 
 function filterRecords(items) {
-    const searchText = searchInput
-        ? searchInput.value.trim().toLowerCase()
-        : "";
+    const searchText = searchInput ? searchInput.value.trim().toLowerCase() : "";
 
-    const category = categoryFilter
-        ? categoryFilter.value
-        : "all";
+    const category = categoryFilter ? categoryFilter.value : "all";
 
     return items.filter((record) => {
         const matchesText =
             record.title.toLowerCase().includes(searchText) ||
             record.text.toLowerCase().includes(searchText);
 
-        const matchesCategory =
-            category === "all" || record.category === category;
+        const matchesCategory = category === "all" || record.category === category;
 
         return matchesText && matchesCategory;
     });
@@ -164,9 +157,7 @@ if (cardsContainer) {
             return;
         }
 
-        const record = records.find(
-            (item) => String(item.id) === button.dataset.id
-        );
+        const record = records.find((item) => String(item.id) === button.dataset.id);
 
         if (record) {
             openModal(record, button);
@@ -185,29 +176,27 @@ async function loadRecords() {
 
     try {
         const response = await fetch("data.json");
-    
 
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
         }
 
-       records = await response.json();
+        records = await response.json();
 
-if (searchInput) {
-    searchInput.value = "";
-}
+        if (searchInput) {
+            searchInput.value = "";
+        }
 
-if (categoryFilter) {
-    categoryFilter.value = "all";
-}
+        if (categoryFilter) {
+            categoryFilter.value = "all";
+        }
 
-updateFilters();
+        updateFilters();
     } catch (error) {
         cardsContainer.textContent = "";
 
         const errorMessage = document.createElement("p");
-        errorMessage.textContent =
-            "Не вдалося завантажити дані. Спробуйте ще раз.";
+        errorMessage.textContent = "Не вдалося завантажити дані. Спробуйте ще раз.";
 
         const retryButton = document.createElement("button");
         retryButton.type = "button";
