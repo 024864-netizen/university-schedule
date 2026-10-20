@@ -286,3 +286,85 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
     color-scheme: dark;
 }
+
+/* React layout fixes */
+#root {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    display: block;
+    min-width: 320px;
+    margin: 0;
+}
+
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    width: min(1100px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 32px 0;
+    gap: 24px;
+    box-sizing: border-box;
+}
+
+.app-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+}
+
+.app-header h1 {
+    margin: 0;
+}
+
+.app-header label,
+.record-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.app-header input,
+.record-form input,
+.record-form textarea,
+.record-form select {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+}
+
+.record-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+}
+
+.record-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.card {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100%;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+    .app-layout {
+        width: calc(100% - 24px);
+        padding: 20px 0;
+    }
+}
+
