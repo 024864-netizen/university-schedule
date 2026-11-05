@@ -1,0 +1,121 @@
+
+{
+  "info": {
+    "_postman_id": "a824f7a0-1234-4567-8901-123456789012",
+    "name": "University Schedule API",
+    "description": "Collection for testing University Schedule REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/api/v1/health"
+      }
+    },
+    {
+      "name": "Get all disciplines",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/api/v1/disciplines"
+      }
+    },
+    {
+      "name": "Get disciplines with pagination",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/api/v1/disciplines?page=1&limit=2"
+      }
+    },
+    {
+      "name": "Get one discipline",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/api/v1/disciplines/1"
+      }
+    },
+    {
+      "name": "Create discipline",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"code\": \"MATH104\",\n  \"name\": \"Вища математика\",\n  \"credits\": 4,\n  \"semester\": 2,\n  \"description\": \"Основи математичного аналізу\"\n}"
+        },
+        "url": "http://localhost:3000/api/v1/disciplines"
+      }
+    },
+    {
+      "name": "Update discipline",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Вебпрограмування та REST API\",\n  \"credits\": 5\n}"
+        },
+        "url": "http://localhost:3000/api/v1/disciplines/1"
+      }
+    },
+    {
+      "name": "Delete discipline",
+      "request": {
+        "method": "DELETE",
+        "url": "http://localhost:3000/api/v1/disciplines/3"
+      }
+    },
+    {
+      "name": "Validation error",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"code\": \"\",\n  \"name\": \"\",\n  \"credits\": -5,\n  \"semester\": 0\n}"
+        },
+        "url": "http://localhost:3000/api/v1/disciplines"
+      }
+    },
+    {
+      "name": "Not found",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/api/v1/disciplines/999"
+      }
+    },
+    {
+      "name": "Duplicate code",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"code\": \"WEB101\",\n  \"name\": \"Дубль дисципліни\",\n  \"credits\": 4,\n  \"semester\": 1\n}"
+        },
+        "url": "http://localhost:3000/api/v1/disciplines"
+      }
+    }
+  ]
+}
