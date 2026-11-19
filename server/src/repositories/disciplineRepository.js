@@ -1,17 +1,21 @@
 
 import { pool } from "../config/database.js";
 
+
 export const findAll = async (limit = 10, offset = 0) => {
-    const [rows] = await pool.execute(
+    const safeLimit = Math.max(1, Math.min(100, Number(limit) || 10));
+    const safeOffset = Math.max(0, Number(offset) || 0);
+
+    const [rows] = await pool.query(
         `SELECT id, code, name, credits, semester, description, created_at
-     FROM disciplines
-     ORDER BY id
-     LIMIT ? OFFSET ?`,
-        [Number(limit), Number(offset)]
+         FROM disciplines
+         ORDER BY id
+         LIMIT ${safeLimit} OFFSET ${safeOffset}`
     );
 
     return rows;
 };
+
 
 export const countAll = async () => {
     const [rows] = await pool.execute(
