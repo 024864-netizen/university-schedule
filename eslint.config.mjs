@@ -1,3 +1,4 @@
+
 import js from "@eslint/js";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -15,6 +16,12 @@ export default tseslint.config(
         },
         rules: {
             "@typescript-eslint/no-explicit-any": "error",
+        },
+    },
+    {
+        files: ["server/**/*.js"],
+        languageOptions: {
+            globals: globals.node,
         },
     },
 );
