@@ -1,69 +1,68 @@
-let disciplines = [
-  {
-    id: 1,
-    code: "WEB101",
-    name: "Вебпрограмування",
-    credits: 4,
-    semester: 1,
-    description: "Основи веброзробки та REST API",
-  },
-  {
-    id: 2,
-    code: "JS102",
-    name: "JavaScript",
-    credits: 5,
-    semester: 2,
-    description: "Програмування мовою JavaScript",
-  },
-  {
-    id: 3,
-    code: "DB103",
-    name: "Бази даних",
-    credits: 3,
-    semester: 1,
-    description: "Основи роботи з базами даних",
-  },
-];
 
-let nextId = 4;
+import { pool } from "../config/database.js";
 
-export const findAll = () => disciplines;
+export const findAll = async (limit = 10, offset = 0) => {
+    const [rows] = await pool.execute(
+        `SELECT id, code, name, credits, semester, description, created_at
+     FROM disciplines
+     ORDER BY id
+     LIMIT ? OFFSET ?`,
+        [Number(limit), Number(offset)]
+    );
 
-export const findById = (id) =>
-  disciplines.find((discipline) => discipline.id === Number(id));
-
-export const create = (data) => {
-  const discipline = {
-    id: nextId++,
-    ...data,
-  };
-
-  disciplines.push(discipline);
-  return discipline;
+    return rows;
 };
 
-export const update = (id, data) => {
-  const index = disciplines.findIndex(
-    (discipline) => discipline.id === Number(id)
-  );
+export const countAll = async () => {
+    const [rows] = await pool.execute(
+        "SELECT COUNT(*) AS total FROM disciplines"
+    );
 
-  if (index === -1) return null;
+    return rows[0].total;
+};
+export const findById = async (id) => {
+    const [rows] = await pool.execute(
+        `SELECT id, code, name, credits, semester, description, created_at
+     FROM disciplines
+     WHERE id = ?`,
+        [Number(id)]
+    );
 
-  disciplines[index] = {
-    ...disciplines[index],
-    ...data,
-  };
-
-  return disciplines[index];
+    return rows[0] || null;
 };
 
-export const remove = (id) => {
-  const index = disciplines.findIndex(
-    (discipline) => discipline.id === Number(id)
-  );
+export const create = async (data) => {
+    const { code, name, credits, semester, description } = data;
 
-  if (index === -1) return false;
+    const [result] = await pool.execute(
+        `INSERT INTO disciplines (code, name, credits, semester, description)
+     VALUES (?, ?, ?, ?, ?)`,
+        [code, name, credits, semester, description ?? null]
+    );
 
-  disciplines.splice(index, 1);
-  return true;
+    return findById(result.insertId);
+};
+
+export const update = async (id, data) => {
+    const { code, name, credits, semester, description } = data;
+
+    const [result] = await pool.execute(
+        `UPDATE disciplines
+     SET code = ?, name = ?, credits = ?, semester = ?, description = ?
+     WHERE id = ?`,
+        [code, name, credits, semester, description ?? null, Number(id)]
+    );
+
+    if (result.affectedRows === 0) return null;
+
+    return findById(id);
+};
+
+export const remove = async (id) => {
+    const [result] = await pool.execute(
+        "DELETE FROM disciplines WHERE id = ?",
+        [Number(id)]
+    );
+
+    return result.affectedRows > 0;
 };

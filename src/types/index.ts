@@ -1,8 +1,11 @@
 export interface RecordItem {
     id: number;
-    title: string;
-    text: string;
-    category: "schedule" | "groups" | "feedback";
+    code: string;
+    name: string;
+    credits: number;
+    semester: number;
+    description: string;
+    created_at?: string;
 }
 
 export type Theme = "light" | "dark";

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import type { RecordItem } from "./types";
 import { Layout } from "./components/Layout";
@@ -7,59 +8,73 @@ import { RecordForm } from "./components/RecordForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DetailsPage } from "./pages/DetailsPage";
 
+const API_URL = "http://localhost:3000/api/v1/disciplines";
+
 export default function App() {
     const [records, setRecords] = useState<RecordItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [search, setSearch] = useState("");
 
-    useEffect(() => {
-        const controller = new AbortController();
+    async function loadRecords() {
+        try {
+            setLoading(true);
+            const response = await fetch(`${API_URL}?limit=100`);
 
-        async function loadRecords() {
-            try {
-                const response = await fetch(`${import.meta.env.BASE_URL}data.json`, {
-                    signal: controller.signal,
-                });
-                if (!response.ok) throw new Error("Помилка завантаження даних");
-                const data: unknown = await response.json();
-                if (!Array.isArray(data)) throw new Error("Невірний формат даних");
-
-                setRecords(data as RecordItem[]);
-            } catch (err: unknown) {
-                if (err instanceof Error && err.name !== "AbortError") {
-                    setError(err.message);
-                }
-            } finally {
-                if (!controller.signal.aborted) setLoading(false);
+            if (!response.ok) {
+                throw new Error("Не вдалося завантажити дисципліни");
             }
-        }
 
+            const result = await response.json();
+            setRecords(result.data);
+            setError("");
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Помилка завантаження");
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
         void loadRecords();
-        return () => controller.abort();
     }, []);
 
+    async function addRecord(record: Omit<RecordItem, "id" | "created_at">) {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify(record),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || "Не вдалося додати дисципліну");
+        }
+
+        await loadRecords();
+    }
+
     const filteredRecords = records.filter((record) =>
-        `${record.title} ${record.text}`.toLowerCase().includes(search.toLowerCase()),
+        `${record.code} ${record.name} ${record.description}`
+            .toLowerCase()
+            .includes(search.toLowerCase())
     );
 
     return (
         <BrowserRouter basename={import.meta.env.BASE_URL}>
             <Layout>
                 <Header search={search} onSearchChange={setSearch} />
+
                 <Routes>
                     <Route
                         path="/"
                         element={
                             <>
-                                <RecordForm
-                                    onAdd={(record) =>
-                                        setRecords((previous) => [
-                                            ...previous,
-                                            { ...record, id: Date.now() },
-                                        ])
-                                    }
-                                />
+                                <RecordForm onAdd={addRecord} />
+
                                 {loading ? (
                                     <p>Завантаження...</p>
                                 ) : error ? (
@@ -70,7 +85,10 @@ export default function App() {
                             </>
                         }
                     />
-                    <Route path="/details/:id" element={<DetailsPage records={records} />} />
+                    <Route
+                        path="/details/:id"
+                        element={<DetailsPage records={records} />}
+                    />
                 </Routes>
             </Layout>
         </BrowserRouter>

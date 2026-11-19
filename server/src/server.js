@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import disciplineRoutes from "./routes/disciplineRoutes.js";
 import { requestLogger } from "./middleware/logger.js";
 import { errorHandler } from "./middleware/errorHandler.js";
+import { pool } from "./config/database.js";
 
 dotenv.config();
 
@@ -36,6 +37,19 @@ app.use((req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+const startServer = async () => {
+    try {
+        const connection = await pool.getConnection();
+        console.log("Успішне підключення до MariaDB!");
+        connection.release();
+
+        app.listen(PORT, () => {
+            console.log(`Сервер запущено: http://localhost:${PORT}`);
+        });
+    } catch (error) {
+        console.error("Помилка підключення до бази даних:", error.message);
+        process.exit(1);
+    }
+};
+
+startServer();

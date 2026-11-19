@@ -1,3 +1,4 @@
+
 import { Link, useParams } from "react-router-dom";
 import type { RecordItem } from "../types";
 
@@ -12,7 +13,7 @@ export function DetailsPage({ records }: DetailsPageProps) {
     if (!record) {
         return (
             <section>
-                <h2>Запис не знайдено</h2>
+                <h2>Дисципліну не знайдено</h2>
                 <Link to="/">Повернутися до списку</Link>
             </section>
         );
@@ -20,9 +21,11 @@ export function DetailsPage({ records }: DetailsPageProps) {
 
     return (
         <article className="card">
-            <h2>{record.title}</h2>
-            <p>{record.text}</p>
-            <p>Категорія: {record.category}</p>
+            <h2>{record.name}</h2>
+            <p><strong>Код:</strong> {record.code}</p>
+            <p><strong>Кредити:</strong> {record.credits}</p>
+            <p><strong>Семестр:</strong> {record.semester}</p>
+            <p>{record.description}</p>
             <Link to="/">← Назад до списку</Link>
         </article>
     );

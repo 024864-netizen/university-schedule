@@ -1,33 +1,36 @@
+
 import * as repository from "../repositories/disciplineRepository.js";
 
-export const getAllDisciplines = (page = 1, limit = 10) => {
-  const all = repository.findAll();
+export const getAllDisciplines = async (page = 1, limit = 10) => {
+    const currentPage = Math.max(1, Number(page) || 1);
+    const currentLimit = Math.min(100, Math.max(1, Number(limit) || 10));
 
-  const start = (page - 1) * limit;
+    const offset = (currentPage - 1) * currentLimit;
 
-  return {
-    data: all.slice(start, start + limit),
-    pagination: {
-      page,
-      limit,
-      total: all.length,
-      totalPages: Math.ceil(all.length / limit),
-    },
-  };
+    const [data, total] = await Promise.all([
+        repository.findAll(currentLimit, offset),
+        repository.countAll(),
+    ]);
+
+    return {
+        data,
+        pagination: {
+            page: currentPage,
+            limit: currentLimit,
+            total,
+            totalPages: Math.ceil(total / currentLimit),
+        },
+    };
 };
 
-export const getDisciplineById = (id) => {
-  return repository.findById(id);
-};
+export const getDisciplineById = async (id) =>
+    repository.findById(id);
 
-export const createDiscipline = (data) => {
-  return repository.create(data);
-};
+export const createDiscipline = async (data) =>
+    repository.create(data);
 
-export const updateDiscipline = (id, data) => {
-  return repository.update(id, data);
-};
+export const updateDiscipline = async (id, data) =>
+    repository.update(id, data);
 
-export const deleteDiscipline = (id) => {
-  return repository.remove(id);
-};
+export const deleteDiscipline = async (id) =>
+    repository.remove(id);

@@ -1,51 +1,87 @@
+
 import { useState } from "react";
 
 interface NewRecord {
-    title: string;
-    text: string;
-    category: "schedule" | "groups" | "feedback";
+    code: string;
+    name: string;
+    credits: number;
+    semester: number;
+    description: string;
 }
 
 interface RecordFormProps {
-    onAdd: (record: NewRecord) => void;
+    onAdd: (record: NewRecord) => Promise<void>;
 }
 
 export function RecordForm({ onAdd }: RecordFormProps) {
-    const [title, setTitle] = useState("");
-    const [text, setText] = useState("");
-    const [category, setCategory] =
-        useState<NewRecord["category"]>("schedule");
+    const [code, setCode] = useState("");
+    const [name, setName] = useState("");
+    const [credits, setCredits] = useState(3);
+    const [semester, setSemester] = useState(1);
+    const [description, setDescription] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-
-        if (!title.trim() || !text.trim()) {
-            setError("Заповніть усі поля.");
-            return;
-        }
-
-        onAdd({
-            title: title.trim(),
-            text: text.trim(),
-            category,
-        });
-
-        setTitle("");
-        setText("");
-        setCategory("schedule");
         setError("");
+        setLoading(true);
+
+        try {
+            await onAdd({
+                code: code.trim(),
+                name: name.trim(),
+                credits,
+                semester,
+                description: description.trim(),
+            });
+
+            setCode("");
+            setName("");
+            setCredits(3);
+            setSemester(1);
+            setDescription("");
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Помилка додавання");
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
         <form onSubmit={handleSubmit} className="record-form">
-            <h2>Додати запис</h2>
+            <h2>Додати дисципліну</h2>
 
             <label>
-                Назва
+                Код дисципліни
+                <input value={code} onChange={(e) => setCode(e.target.value)} required />
+            </label>
+
+            <label>
+                Назва дисципліни
+                <input value={name} onChange={(e) => setName(e.target.value)} required />
+            </label>
+
+            <label>
+                Кількість кредитів
                 <input
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value)}
+                    type="number"
+                    min="1"
+                    max="60"
+                    value={credits}
+                    onChange={(e) => setCredits(Number(e.target.value))}
+                    required
+                />
+            </label>
+
+            <label>
+                Семестр
+                <input
+                    type="number"
+                    min="1"
+                    max="12"
+                    value={semester}
+                    onChange={(e) => setSemester(Number(e.target.value))}
                     required
                 />
             </label>
@@ -53,29 +89,16 @@ export function RecordForm({ onAdd }: RecordFormProps) {
             <label>
                 Опис
                 <textarea
-                    value={text}
-                    onChange={(event) => setText(event.target.value)}
-                    required
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                 />
-            </label>
-
-            <label>
-                Категорія
-                <select
-                    value={category}
-                    onChange={(event) =>
-                        setCategory(event.target.value as NewRecord["category"])
-                    }
-                >
-                    <option value="schedule">Розклад</option>
-                    <option value="groups">Групи</option>
-                    <option value="feedback">Відгуки</option>
-                </select>
             </label>
 
             {error && <p role="alert">{error}</p>}
 
-            <button type="submit">Додати</button>
+            <button type="submit" disabled={loading}>
+                {loading ? "Збереження..." : "Додати дисципліну"}
+            </button>
         </form>
     );
 }
