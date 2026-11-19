@@ -12,7 +12,7 @@
 
 **Налаштування підключення до MariaDB**
 
-![Підключення до бази даних](screenshots/06_database_connection.png)
+![Підключення до бази даних](06_database_connection.png)
 
 ### 2. Міграція та початкові дані
 
@@ -22,7 +22,7 @@
 
 **Отримання списку дисциплін через API**
 
-![Список дисциплін](screenshots/07_api_disciplines.png)
+![Список дисциплін](07_api_disciplines.png)
 
 ### 3. Підключення до MariaDB
 
@@ -30,7 +30,7 @@
 
 **Перевірка пагінації API**
 
-![Пагінація](screenshots/08_api_pagination.png)
+![Пагінація](08_api_pagination.png)
 
 ### 4. Робота API
 
@@ -38,11 +38,11 @@
 
 **Створення нової дисципліни через API**
 
-![Створення дисципліни](screenshots/09_create_discipline.png)
+![Створення дисципліни](09_create_discipline.png)
 
 **Перевірка правильного відображення українського тексту**
 
-![Кодування тексту](screenshots/10_utf8_data.png)
+![Кодування тексту](10_utf8_data.png)
 
 ### 5. Інтеграція frontend та backend
 
@@ -54,19 +54,20 @@
 
 ** Перевірка збереження даних**
 
-![Збереження даних](screenshots/11_data_persistence.png)
+![Збереження даних](11_data_persistence.png)
 
 **Відображення дисциплін у вебінтерфейсі**
+![Список дисциплін](12(1).png)
 
-![Список дисциплін](screenshots/12(2).png)
+![Список дисциплін](12(2).png)
 
 ** Перевірка збереження запису після оновлення сторінки**
 
-![Збереження після оновлення](screenshots/13_data_persistence_after_reload.png)
+![Збереження після оновлення](13_data_persistence_after_reload.png)
 
 **Перевірка створеного запису в MariaDB**
 
-![Запис у MariaDB](screenshots/14_database_ui_record.png)
+![Запис у MariaDB](14_database_ui_record.png)
 
 ### 6. Перевірка індексу та обмежень
 
