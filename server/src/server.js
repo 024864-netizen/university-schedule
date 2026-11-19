@@ -13,9 +13,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+    origin: [
+        "http://localhost:5173",
+        "https://024864-netizen.github.io"
+    ],
 }));
-
 app.use(express.json());
 app.use(requestLogger);
 
