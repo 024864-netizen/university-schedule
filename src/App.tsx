@@ -8,7 +8,7 @@ import { RecordForm } from "./components/RecordForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DetailsPage } from "./pages/DetailsPage";
 
-const API_URL = "http://localhost:3000/api/v1/disciplines";
+const API_URL = "https://university-schedule-us8g.onrender.com/api/v1/disciplines";
 
 export default function App() {
     const [records, setRecords] = useState<RecordItem[]>([]);
